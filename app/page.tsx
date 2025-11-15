@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="px-4 py-20 md:py-32 max-w-7xl mx-auto">
+      <section className="px-4 py-20 md:py-32 max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -28,7 +28,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 leading-tight">
             How developers build
             <br />
             <span className="text-posthog">successful products</span>
@@ -52,8 +52,8 @@ export default function Home() {
       </section>
 
       {/* Customer Logos */}
-      <section className="py-16 border-y border-darkblue/10">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-16 border-y border-darkblue/10 bg-cream">
+        <div className="max-w-[1400px] mx-auto px-4">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -84,8 +84,8 @@ export default function Home() {
       </section>
 
       {/* Feature Section 1 - Image Left */}
-      <section className="py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -94,7 +94,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="order-2 md:order-1"
             >
-              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center">
+              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
                 <div className="text-center">
                   <div className="text-6xl mb-4">📊</div>
                   <p className="text-darkblue/60">Product Analytics Dashboard</p>
@@ -134,8 +134,8 @@ export default function Home() {
       </section>
 
       {/* Feature Section 2 - Image Right */}
-      <section className="py-20 md:py-32 bg-darkblue/5">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-20 md:py-32 bg-cream">
+        <div className="max-w-[1400px] mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -170,7 +170,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-cream rounded-lg p-8 aspect-square flex items-center justify-center border-2 border-darkblue/10">
+              <div className="bg-white rounded-lg p-8 aspect-square flex items-center justify-center border-2 border-darkblue/10 shadow-md hover:shadow-lg transition-shadow">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🚀</div>
                   <p className="text-darkblue/60">Feature Flags Interface</p>
@@ -182,8 +182,8 @@ export default function Home() {
       </section>
 
       {/* Feature Section 3 - Image Left */}
-      <section className="py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -192,7 +192,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="order-2 md:order-1"
             >
-              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center">
+              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🎬</div>
                   <p className="text-darkblue/60">Session Recording Player</p>
@@ -232,8 +232,8 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 md:py-32 bg-darkblue/5">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-20 md:py-32 bg-cream">
+        <div className="max-w-[1400px] mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -298,10 +298,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className={`bg-cream rounded-lg p-8 ${
+                className={`bg-white rounded-lg p-8 ${
                   plan.highlighted
-                    ? "ring-4 ring-posthog transform scale-105"
-                    : "border-2 border-darkblue/10"
+                    ? "ring-4 ring-posthog transform scale-105 shadow-xl"
+                    : "border-2 border-darkblue/10 shadow-md hover:shadow-lg transition-shadow"
                 }`}
               >
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
@@ -331,7 +331,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32">
+      <section className="py-20 md:py-32 bg-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -353,8 +353,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-darkblue/10 py-12">
-        <div className="max-w-7xl mx-auto px-4">
+      <footer className="border-t border-darkblue/10 py-12 bg-cream">
+        <div className="max-w-[1400px] mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <h4 className="font-bold mb-4">Product</h4>
