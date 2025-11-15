@@ -15,6 +15,12 @@ const config: Config = {
         cream: "#FFFEF9",
         darkblue: "#35416B",
         posthog: "#F7A501",
+        'posthog-yellow': '#F7A501',
+        'posthog-cream': '#FFFEF9',
+        'posthog-dark': '#35416B',
+      },
+      maxWidth: {
+        'content': '1400px',
       },
       borderRadius: {
         'posthog': '8px',
