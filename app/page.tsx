@@ -31,22 +31,22 @@ export default function Home() {
           <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 leading-tight">
             How developers build
             <br />
-            <span className="text-posthog">successful products</span>
+            <span className="text-posthog">better products</span>
           </h1>
           <p className="text-xl md:text-2xl text-darkblue/80 mb-10 max-w-3xl mx-auto">
-            All the tools you need to build better products. Analytics, feature flags,
-            session recording, A/B testing, and more. Built for engineers.
+            Product analytics, feature flags, session replay, experiments, and more.
+            All in one platform. Built for engineers who ship fast.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-posthog hover:bg-yellow-500 text-darkblue font-bold py-4 px-8 rounded-md text-lg transition-all transform hover:scale-105 shadow-lg">
-              Get started - free
+            <button className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold py-4 px-8 rounded-md text-lg transition-all transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
+              Get started - free forever
             </button>
-            <button className="bg-darkblue hover:bg-darkblue/90 text-cream font-bold py-4 px-8 rounded-md text-lg transition-all transform hover:scale-105 border-2 border-darkblue">
-              Book a demo
+            <button className="bg-darkblue hover:bg-darkblue/90 text-cream font-bold py-4 px-8 rounded-md text-lg transition-all transform hover:scale-105 hover:-translate-y-1 border-2 border-darkblue shadow-md">
+              Talk to a human
             </button>
           </div>
           <p className="text-sm text-darkblue/60 mt-6">
-            No credit card required • Generous free tier • Cancel anytime
+            No credit card required • 1 million events/month free • Deploys in 5 minutes
           </p>
         </motion.div>
       </section>
@@ -73,7 +73,7 @@ export default function Home() {
               (company) => (
                 <div
                   key={company}
-                  className="flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  className="flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer hover:scale-110 duration-300"
                 >
                   <div className="text-2xl font-bold text-darkblue">{company}</div>
                 </div>
@@ -94,10 +94,10 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="order-2 md:order-1"
             >
-              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">📊</div>
-                  <p className="text-darkblue/60">Product Analytics Dashboard</p>
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+                  <p className="text-darkblue/60 group-hover:text-darkblue transition-colors">Product Analytics Dashboard</p>
                 </div>
               </div>
             </motion.div>
@@ -109,25 +109,31 @@ export default function Home() {
               className="order-1 md:order-2"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Product analytics that actually make sense
+                Analytics that don&apos;t require a PhD
               </h2>
               <p className="text-xl text-darkblue/80 mb-6">
-                Track every click, conversion, and user journey. No SQL required.
-                Autocapture means you never miss a data point again.
+                Track everything. Understand anything. Autocapture means you&apos;ll never say
+                &ldquo;I wish we&apos;d tracked that&rdquo; again.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-6">
                 {[
-                  "Autocapture events automatically",
-                  "Funnel and retention analysis",
-                  "User paths and lifecycle tracking",
-                  "Custom dashboards that don't suck",
+                  "Autocapture every click, scroll, and rage-click",
+                  "Funnels that actually make sense",
+                  "Retention curves without the headaches",
+                  "User paths (AKA see why users ghost you)",
                 ].map((feature) => (
-                  <li key={feature} className="flex items-start">
-                    <span className="text-posthog mr-2 text-xl">✓</span>
-                    <span className="text-lg">{feature}</span>
+                  <li key={feature} className="flex items-start group">
+                    <span className="text-posthog mr-2 text-xl group-hover:scale-125 transition-transform">✓</span>
+                    <span className="text-lg group-hover:text-darkblue transition-colors">{feature}</span>
                   </li>
                 ))}
               </ul>
+              <div className="bg-darkblue/5 rounded-md p-4 border-l-4 border-posthog">
+                <code className="text-sm text-darkblue/90">
+                  posthog.capture(&apos;user_signed_up&apos;)
+                </code>
+                <p className="text-xs text-darkblue/60 mt-2">That&apos;s it. You&apos;re done.</p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -144,25 +150,36 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Feature flags for the win
+                Ship features without the fear
               </h2>
               <p className="text-xl text-darkblue/80 mb-6">
-                Roll out features safely. Test in production. Kill switches for when
-                things go wrong. Because they will.
+                Deploy to prod on Friday. Test in production. Roll back instantly when
+                things inevitably break. We won&apos;t judge.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-6">
                 {[
-                  "Deploy without fear",
-                  "A/B test everything",
-                  "Gradual rollouts and kill switches",
-                  "Target by user properties",
+                  "Toggle features on/off in real-time",
+                  "A/B test like your job depends on it",
+                  "Gradual rollouts (0% → 100% at your pace)",
+                  "Kill switches (for when you pushed on Friday)",
                 ].map((feature) => (
-                  <li key={feature} className="flex items-start">
-                    <span className="text-posthog mr-2 text-xl">✓</span>
-                    <span className="text-lg">{feature}</span>
+                  <li key={feature} className="flex items-start group">
+                    <span className="text-posthog mr-2 text-xl group-hover:scale-125 transition-transform">✓</span>
+                    <span className="text-lg group-hover:text-darkblue transition-colors">{feature}</span>
                   </li>
                 ))}
               </ul>
+              <div className="bg-darkblue/5 rounded-md p-4 border-l-4 border-posthog">
+                <code className="text-sm text-darkblue/90 block">
+                  if (posthog.isFeatureEnabled(&apos;new-ui&apos;)) &#123;
+                </code>
+                <code className="text-sm text-darkblue/90 block pl-4">
+                  {'//'} Ship it 🚀
+                </code>
+                <code className="text-sm text-darkblue/90 block">
+                  &#125;
+                </code>
+              </div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -170,10 +187,10 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-white rounded-lg p-8 aspect-square flex items-center justify-center border-2 border-darkblue/10 shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-white rounded-lg p-8 aspect-square flex items-center justify-center border-2 border-darkblue/10 shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">🚀</div>
-                  <p className="text-darkblue/60">Feature Flags Interface</p>
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                  <p className="text-darkblue/60 group-hover:text-darkblue transition-colors">Feature Flags Interface</p>
                 </div>
               </div>
             </motion.div>
@@ -192,10 +209,10 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="order-2 md:order-1"
             >
-              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-darkblue/5 rounded-lg p-8 aspect-square flex items-center justify-center shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">🎬</div>
-                  <p className="text-darkblue/60">Session Recording Player</p>
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">🎬</div>
+                  <p className="text-darkblue/60 group-hover:text-darkblue transition-colors">Session Recording Player</p>
                 </div>
               </div>
             </motion.div>
@@ -207,25 +224,33 @@ export default function Home() {
               className="order-1 md:order-2"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Watch users break your UI
+                Watch users break your UI in HD
               </h2>
               <p className="text-xl text-darkblue/80 mb-6">
-                Session recordings show you exactly what went wrong. No more &ldquo;works on
-                my machine&rdquo; excuses.
+                Session replay shows exactly where things went wrong. No more &ldquo;works on
+                my machine&rdquo; excuses. We&apos;ve all been there.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-6">
                 {[
-                  "Privacy-friendly by default",
-                  "Console logs included",
-                  "Network requests tracked",
-                  "Skip the boring parts",
+                  "Privacy-first (auto-redact sensitive data)",
+                  "Console logs & network requests included",
+                  "Skip inactivity (nobody has time for that)",
+                  "Actually helpful error tracking",
                 ].map((feature) => (
-                  <li key={feature} className="flex items-start">
-                    <span className="text-posthog mr-2 text-xl">✓</span>
-                    <span className="text-lg">{feature}</span>
+                  <li key={feature} className="flex items-start group">
+                    <span className="text-posthog mr-2 text-xl group-hover:scale-125 transition-transform">✓</span>
+                    <span className="text-lg group-hover:text-darkblue transition-colors">{feature}</span>
                   </li>
                 ))}
               </ul>
+              <div className="bg-darkblue/5 rounded-md p-4 border-l-4 border-posthog">
+                <p className="text-sm text-darkblue/90 italic">
+                  &ldquo;I can&apos;t reproduce the bug&rdquo;
+                </p>
+                <p className="text-xs text-darkblue/60 mt-2">
+                  — Things you&apos;ll never say again
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -242,11 +267,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Pay for what you use
+              Pricing that makes sense
             </h2>
             <p className="text-xl text-darkblue/80 max-w-2xl mx-auto">
-              No seat-based pricing nonsense. You only pay for the events you track.
-              Start free, scale forever.
+              No per-seat pricing. No hidden fees. No &ldquo;contact sales&rdquo; unless you want to.
+              Pay for events, not headcount. Revolutionary, we know.
             </p>
           </motion.div>
 
@@ -255,40 +280,40 @@ export default function Home() {
               {
                 name: "Free",
                 price: "$0",
-                description: "Perfect for side projects",
+                description: "For side projects and MVPs",
                 features: [
-                  "1 million events/mo",
+                  "1M events/month (seriously)",
                   "1 year data retention",
                   "Unlimited team members",
-                  "Community support",
+                  "Community support (we&apos;re friendly)",
                 ],
-                cta: "Start free",
+                cta: "Start building",
                 highlighted: false,
               },
               {
-                name: "Growth",
+                name: "Scale",
                 price: "Usage-based",
-                description: "For growing products",
+                description: "For serious products",
                 features: [
-                  "Pay per event",
+                  "$0.00045/event after free tier",
                   "Unlimited data retention",
-                  "Advanced features",
-                  "Priority support",
+                  "All features unlocked",
+                  "Email & Slack support",
                 ],
-                cta: "Get started",
+                cta: "Start free",
                 highlighted: true,
               },
               {
                 name: "Enterprise",
                 price: "Custom",
-                description: "For large teams",
+                description: "For when compliance matters",
                 features: [
-                  "Volume discounts",
-                  "SSO & SAML",
+                  "Volume discounts (big ones)",
+                  "SSO, SAML, & audit logs",
                   "SLA & dedicated support",
-                  "Custom contracts",
+                  "MSA, DPA, you name it",
                 ],
-                cta: "Talk to sales",
+                cta: "Let&apos;s talk",
                 highlighted: false,
               },
             ].map((plan) => (
@@ -340,13 +365,15 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Ready to ship better products?
+              Ready to build something people want?
             </h2>
             <p className="text-xl text-darkblue/80 mb-10">
-              Join thousands of developers who actually enjoy their analytics tool.
+              Join 30,000+ developers who ship faster with real data.
+              <br />
+              <span className="text-base">(Yes, this is a shameless CTA)</span>
             </p>
-            <button className="bg-posthog hover:bg-yellow-500 text-darkblue font-bold py-4 px-8 rounded-md text-lg transition-all transform hover:scale-105 shadow-lg">
-              Get started for free
+            <button className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold py-4 px-8 rounded-md text-lg transition-all transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl">
+              Start building for free →
             </button>
           </motion.div>
         </div>
