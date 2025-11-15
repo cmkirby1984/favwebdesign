@@ -8,10 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
       colors: {
         cream: "#FFFEF9",
         darkblue: "#35416B",
-        posthog: "#F9BD2B",
+        posthog: "#F7A501",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in",
