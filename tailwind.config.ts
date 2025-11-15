@@ -16,6 +16,21 @@ const config: Config = {
         darkblue: "#35416B",
         posthog: "#F7A501",
       },
+      borderRadius: {
+        'posthog': '8px',
+        'posthog-lg': '12px',
+      },
+      boxShadow: {
+        'posthog': '0 4px 6px rgba(0, 0, 0, 0.1)',
+        'posthog-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        'posthog-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+      },
+      spacing: {
+        '96': '24rem',
+      },
+      transitionDuration: {
+        '200': '200ms',
+      },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in",
         "slide-up": "slideUp 0.5s ease-out",
