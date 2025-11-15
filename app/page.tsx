@@ -210,8 +210,8 @@ export default function Home() {
                 Watch users break your UI
               </h2>
               <p className="text-xl text-darkblue/80 mb-6">
-                Session recordings show you exactly what went wrong. No more "works on
-                my machine" excuses.
+                Session recordings show you exactly what went wrong. No more &ldquo;works on
+                my machine&rdquo; excuses.
               </p>
               <ul className="space-y-3">
                 {[
