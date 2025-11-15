@@ -1,457 +1,254 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
+  const [activeTab, setActiveTab] = useState("startup");
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const products = [
+    { name: "Session Replay", icon: "🎬", color: "bg-purple-100" },
+    { name: "Web Analytics", icon: "📊", color: "bg-blue-100" },
+    { name: "Product Analytics", icon: "📈", color: "bg-green-100" },
+    { name: "Error Tracking", icon: "🐛", color: "bg-red-100" },
+    { name: "Feature Flags", icon: "🚩", color: "bg-yellow-100" },
+    { name: "A/B Testing", icon: "🧪", color: "bg-pink-100" },
+  ];
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="px-4 py-24 max-w-[1400px] mx-auto">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          transition={{ duration: 0.6 }}
-          className="text-center"
+    <main className="min-h-screen bg-[#E8DCC8] relative p-4 lg:p-8">
+      {/* Textured background */}
+      <div className="absolute inset-0 opacity-5"
+           style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}}
+      />
+
+      <div className="relative max-w-7xl mx-auto flex gap-6 items-start">
+        {/* Sidebar Dock */}
+        <motion.aside
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          className="hidden lg:flex flex-col gap-3 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-3 sticky top-8"
         >
-          <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 leading-tight">
-            How developers build
-            <br />
-            <span className="text-posthog">better products</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-darkblue/80 mb-10 max-w-3xl mx-auto">
-            Product analytics, feature flags, session replay, experiments, and more.
-            All in one platform. Built for engineers who ship fast.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold py-4 px-8 rounded-posthog text-lg transition-all duration-200 transform hover:scale-105 hover:-translate-y-1 shadow-posthog-lg hover:shadow-posthog-xl">
-              Get started - free forever
-            </button>
-            <button className="bg-darkblue hover:bg-darkblue/90 text-cream font-bold py-4 px-8 rounded-posthog text-lg transition-all duration-200 transform hover:scale-105 hover:-translate-y-1 border-2 border-darkblue shadow-posthog">
-              Talk to a human
-            </button>
-          </div>
-          <p className="text-sm text-darkblue/60 mt-6">
-            No credit card required • 1 million events/month free • Deploys in 5 minutes
-          </p>
-        </motion.div>
-      </section>
+          {[
+            { icon: "🏠", label: "home" },
+            { icon: "⚙️", label: "product" },
+            { icon: "💰", label: "pricing" },
+            { icon: "👥", label: "customers" },
+            { icon: "🎥", label: "demo" },
+            { icon: "📚", label: "docs" },
+            { icon: "💬", label: "talk" },
+            { icon: "🚀", label: "app" },
+          ].map((item, i) => (
+            <motion.button
+              key={i}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-sm hover:shadow-md transition-all group relative"
+              title={item.label}
+            >
+              <span className="text-xl">{item.icon}</span>
+              <span className="absolute left-full ml-2 bg-darkblue text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                {item.label}
+              </span>
+            </motion.button>
+          ))}
+        </motion.aside>
 
-      {/* Customer Logos */}
-      <section className="py-16 border-y border-darkblue/10 bg-cream">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-sm uppercase tracking-wider text-darkblue/60 mb-8"
-          >
-            Trusted by teams at
-          </motion.p>
+        {/* Main Content Area */}
+        <div className="flex-1 flex gap-6 items-start">
+          {/* Desktop Window */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="flex-1 bg-white rounded-xl shadow-2xl overflow-hidden max-w-2xl"
           >
-            {["Airbnb", "Spotify", "GitHub", "Netflix", "Stripe", "Shopify"].map(
-              (company) => (
-                <div
-                  key={company}
-                  className="flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer hover:scale-110 duration-200"
-                >
-                  <div className="text-2xl font-bold text-darkblue">{company}</div>
-                </div>
-              )
-            )}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Feature Section 1 - Image Left */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="order-2 md:order-1"
-            >
-              <div className="bg-darkblue/5 rounded-posthog-lg p-8 aspect-square flex items-center justify-center shadow-posthog hover:shadow-posthog-lg transition-all duration-200 hover:scale-105 cursor-pointer group">
-                <div className="text-center">
-                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">📊</div>
-                  <p className="text-darkblue/60 group-hover:text-darkblue transition-colors">Product Analytics Dashboard</p>
-                </div>
+            {/* Window Chrome */}
+            <div className="bg-gradient-to-b from-gray-100 to-gray-200 px-4 py-2.5 flex items-center gap-3 border-b border-gray-300">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="order-1 md:order-2"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Analytics that don&apos;t require a PhD
-              </h2>
-              <p className="text-xl text-darkblue/80 mb-6">
-                Track everything. Understand anything. Autocapture means you&apos;ll never say
-                &ldquo;I wish we&apos;d tracked that&rdquo; again.
+              <div className="flex items-center gap-2">
+                <span className="text-lg">📄</span>
+                <span className="text-sm font-medium text-gray-700">home.mdx</span>
+              </div>
+            </div>
+
+            {/* Toolbar */}
+            <div className="bg-gray-50 px-4 py-2 flex items-center justify-between border-b border-gray-200 flex-wrap gap-2">
+              <div className="flex items-center gap-1 text-gray-600">
+                <button className="p-1 hover:bg-gray-200 rounded text-sm" title="Undo">↶</button>
+                <button className="p-1 hover:bg-gray-200 rounded text-sm" title="Redo">↷</button>
+                <div className="w-px h-4 bg-gray-300 mx-1"></div>
+                <button className="p-1 hover:bg-gray-200 rounded font-bold text-xs">B</button>
+                <button className="p-1 hover:bg-gray-200 rounded italic text-xs">I</button>
+                <button className="p-1 hover:bg-gray-200 rounded underline text-xs">U</button>
+              </div>
+              <button className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold px-3 py-1 rounded text-xs transition-all hidden sm:block">
+                Get started - free
+              </button>
+            </div>
+
+            {/* Window Content */}
+            <div className="p-6 space-y-6 max-h-[calc(100vh-16rem)] overflow-y-auto">
+              {/* Header */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-xl">
+                    🦔
+                  </div>
+                  <h1 className="text-2xl font-bold text-darkblue">PostHog</h1>
+                </div>
+                <h2 className="text-xl font-bold text-darkblue leading-snug">
+                  We make dev tools that help product engineers build successful products
+                </h2>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold py-2 px-4 rounded-lg transition-all text-sm">
+                  Get started - free
+                </button>
+                <button className="border-2 border-darkblue text-darkblue font-bold py-2 px-4 rounded-lg hover:bg-darkblue hover:text-white transition-all text-sm">
+                  Install with AI
+                </button>
+              </div>
+
+              <p className="text-xs text-gray-600">
+                Questions? <a href="#" className="text-darkblue underline">Watch a demo</a> or <a href="#" className="text-darkblue underline">talk to a human</a>
               </p>
-              <ul className="space-y-3 mb-6">
-                {[
-                  "Autocapture every click, scroll, and rage-click",
-                  "Funnels that actually make sense",
-                  "Retention curves without the headaches",
-                  "User paths (AKA see why users ghost you)",
-                ].map((feature) => (
-                  <li key={feature} className="flex items-start group">
-                    <span className="text-posthog mr-2 text-xl group-hover:scale-125 transition-transform duration-200">✓</span>
-                    <span className="text-lg group-hover:text-darkblue transition-colors">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="bg-darkblue/5 rounded-posthog p-4 border-l-4 border-posthog shadow-posthog">
-                <code className="text-sm text-darkblue/90">
-                  posthog.capture(&apos;user_signed_up&apos;)
-                </code>
-                <p className="text-xs text-darkblue/60 mt-2">That&apos;s it. You&apos;re done.</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* Feature Section 2 - Image Right */}
-      <section className="py-24 bg-cream">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Ship features without the fear
-              </h2>
-              <p className="text-xl text-darkblue/80 mb-6">
-                Deploy to prod on Friday. Test in production. Roll back instantly when
-                things inevitably break. We won&apos;t judge.
-              </p>
-              <ul className="space-y-3 mb-6">
-                {[
-                  "Toggle features on/off in real-time",
-                  "A/B test like your job depends on it",
-                  "Gradual rollouts (0% → 100% at your pace)",
-                  "Kill switches (for when you pushed on Friday)",
-                ].map((feature) => (
-                  <li key={feature} className="flex items-start group">
-                    <span className="text-posthog mr-2 text-xl group-hover:scale-125 transition-transform duration-200">✓</span>
-                    <span className="text-lg group-hover:text-darkblue transition-colors">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="bg-darkblue/5 rounded-posthog p-4 border-l-4 border-posthog shadow-posthog">
-                <code className="text-sm text-darkblue/90 block">
-                  if (posthog.isFeatureEnabled(&apos;new-ui&apos;)) &#123;
-                </code>
-                <code className="text-sm text-darkblue/90 block pl-4">
-                  {'//'} Ship it 🚀
-                </code>
-                <code className="text-sm text-darkblue/90 block">
-                  &#125;
-                </code>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="bg-white rounded-lg p-8 aspect-square flex items-center justify-center border-2 border-darkblue/10 shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
-                <div className="text-center">
-                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
-                  <p className="text-darkblue/60 group-hover:text-darkblue transition-colors">Feature Flags Interface</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Section 3 - Image Left */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="order-2 md:order-1"
-            >
-              <div className="bg-darkblue/5 rounded-posthog-lg p-8 aspect-square flex items-center justify-center shadow-posthog hover:shadow-posthog-lg transition-all duration-200 hover:scale-105 cursor-pointer group">
-                <div className="text-center">
-                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">🎬</div>
-                  <p className="text-darkblue/60 group-hover:text-darkblue transition-colors">Session Recording Player</p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="order-1 md:order-2"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Watch users break your UI in HD
-              </h2>
-              <p className="text-xl text-darkblue/80 mb-6">
-                Session replay shows exactly where things went wrong. No more &ldquo;works on
-                my machine&rdquo; excuses. We&apos;ve all been there.
-              </p>
-              <ul className="space-y-3 mb-6">
-                {[
-                  "Privacy-first (auto-redact sensitive data)",
-                  "Console logs & network requests included",
-                  "Skip inactivity (nobody has time for that)",
-                  "Actually helpful error tracking",
-                ].map((feature) => (
-                  <li key={feature} className="flex items-start group">
-                    <span className="text-posthog mr-2 text-xl group-hover:scale-125 transition-transform duration-200">✓</span>
-                    <span className="text-lg group-hover:text-darkblue transition-colors">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="bg-darkblue/5 rounded-posthog p-4 border-l-4 border-posthog shadow-posthog">
-                <p className="text-sm text-darkblue/90 italic">
-                  &ldquo;I can&apos;t reproduce the bug&rdquo;
-                </p>
-                <p className="text-xs text-darkblue/60 mt-2">
-                  — Things you&apos;ll never say again
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-24 bg-cream">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Pricing that makes sense
-            </h2>
-            <p className="text-xl text-darkblue/80 max-w-2xl mx-auto">
-              No per-seat pricing. No hidden fees. No &ldquo;contact sales&rdquo; unless you want to.
-              Pay for events, not headcount. Revolutionary, we know.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Free",
-                price: "$0",
-                description: "For side projects and MVPs",
-                features: [
-                  "1M events/month (seriously)",
-                  "1 year data retention",
-                  "Unlimited team members",
-                  "Community support (we&apos;re friendly)",
-                ],
-                cta: "Start building",
-                highlighted: false,
-              },
-              {
-                name: "Scale",
-                price: "Usage-based",
-                description: "For serious products",
-                features: [
-                  "$0.00045/event after free tier",
-                  "Unlimited data retention",
-                  "All features unlocked",
-                  "Email & Slack support",
-                ],
-                cta: "Start free",
-                highlighted: true,
-              },
-              {
-                name: "Enterprise",
-                price: "Custom",
-                description: "For when compliance matters",
-                features: [
-                  "Volume discounts (big ones)",
-                  "SSO, SAML, & audit logs",
-                  "SLA & dedicated support",
-                  "MSA, DPA, you name it",
-                ],
-                cta: "Let&apos;s talk",
-                highlighted: false,
-              },
-            ].map((plan) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className={`bg-white rounded-posthog-lg p-8 ${
-                  plan.highlighted
-                    ? "ring-4 ring-posthog transform scale-105 shadow-posthog-xl"
-                    : "border-2 border-darkblue/10 shadow-posthog hover:shadow-posthog-lg transition-shadow duration-200"
-                }`}
-              >
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="text-4xl font-bold mb-2">{plan.price}</div>
-                <p className="text-darkblue/70 mb-6">{plan.description}</p>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start">
-                      <span className="text-posthog mr-2">✓</span>
-                      <span>{feature}</span>
-                    </li>
+              {/* Tabbed Interface */}
+              <div className="space-y-3">
+                <div className="flex gap-1 border-b border-gray-200 text-sm">
+                  {[
+                    { id: "startup", label: "Startup" },
+                    { id: "growth", label: "Growth" },
+                    { id: "scale", label: "Scale" },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`px-3 py-1.5 font-medium transition-colors relative ${
+                        activeTab === tab.id ? "text-darkblue" : "text-gray-500"
+                      }`}
+                    >
+                      {tab.label}
+                      {activeTab === tab.id && (
+                        <motion.div
+                          layoutId="tab"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-posthog"
+                        />
+                      )}
+                    </button>
                   ))}
-                </ul>
-                <button
-                  className={`w-full py-3 px-6 rounded-posthog font-bold transition-all duration-200 transform hover:scale-105 ${
-                    plan.highlighted
-                      ? "bg-posthog hover:bg-[#E89D01] text-darkblue shadow-posthog-lg hover:shadow-posthog-xl"
-                      : "bg-darkblue hover:bg-darkblue/90 text-cream shadow-posthog hover:shadow-posthog-lg"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                </div>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+                {/* Product Grid */}
+                <div className="grid grid-cols-2 gap-2">
+                  {products.map((product, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ scale: 1.03 }}
+                      className={`${product.color} p-3 rounded-lg cursor-pointer`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">{product.icon}</span>
+                        <span className="font-medium text-xs text-darkblue">{product.name}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <a href="#" className="text-xs text-darkblue hover:text-posthog underline">
+                  Go to app library (34) →
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right side with illustration */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="hidden xl:block relative w-80"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Ready to build something people want?
-            </h2>
-            <p className="text-xl text-darkblue/80 mb-10">
-              Join 30,000+ developers who ship faster with real data.
-              <br />
-              <span className="text-base">(Yes, this is a shameless CTA)</span>
-            </p>
-            <button className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold py-4 px-8 rounded-posthog text-lg transition-all duration-200 transform hover:scale-105 hover:-translate-y-1 shadow-posthog-lg hover:shadow-posthog-xl">
-              Start building for free →
-            </button>
+            {/* Featured Card - Overlaying */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="absolute -left-16 top-8 bg-gradient-to-br from-yellow-400 to-orange-500 p-4 rounded-xl shadow-2xl max-w-[200px] z-10"
+            >
+              <h3 className="text-white font-bold text-sm mb-2">Session Replay</h3>
+              <div className="bg-white/90 rounded p-2 mb-3">
+                <div className="bg-gray-100 rounded h-20 flex items-center justify-center">
+                  <span className="text-3xl">🎬</span>
+                </div>
+              </div>
+              <button className="bg-white text-darkblue font-bold py-1.5 px-3 rounded text-xs hover:bg-gray-100 transition-colors w-full">
+                Explore →
+              </button>
+            </motion.div>
+
+            {/* Pixel Art Village */}
+            <div className="bg-gradient-to-br from-sky-300 to-sky-400 rounded-2xl p-6 shadow-xl mt-24">
+              <svg viewBox="0 0 300 280" className="w-full h-auto">
+                <defs>
+                  <pattern id="grass" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <rect width="10" height="10" fill="#4ade80"/>
+                    <circle cx="3" cy="3" r="0.5" fill="#22c55e"/>
+                  </pattern>
+                </defs>
+
+                {/* Hexagonal tiles */}
+                <g transform="translate(40, 80)">
+                  <polygon points="40,0 60,12 60,36 40,48 20,36 20,12" fill="url(#grass)" stroke="#22c55e" strokeWidth="1.5"/>
+                  <polygon points="80,24 100,36 100,60 80,72 60,60 60,36" fill="url(#grass)" stroke="#22c55e" strokeWidth="1.5"/>
+                  <polygon points="120,0 140,12 140,36 120,48 100,36 100,12" fill="url(#grass)" stroke="#22c55e" strokeWidth="1.5"/>
+                  <polygon points="160,24 180,36 180,60 160,72 140,60 140,36" fill="#fbbf24" stroke="#f59e0b" strokeWidth="1.5"/>
+                  <polygon points="80,72 100,84 100,108 80,120 60,108 60,84" fill="#38bdf8" stroke="#0ea5e9" strokeWidth="1.5"/>
+                  <polygon points="120,48 140,60 140,84 120,96 100,84 100,60" fill="#92400e" stroke="#78350f" strokeWidth="1.5"/>
+                </g>
+
+                {/* Castle */}
+                <g transform="translate(130, 110)">
+                  <rect x="0" y="0" width="32" height="40" fill="#6b7280" stroke="#374151" strokeWidth="1.5"/>
+                  <polygon points="16,0 36,-12 36,-4 16,8 -4,-4 -4,-12" fill="#ef4444" stroke="#b91c1c" strokeWidth="1.5"/>
+                  <rect x="8" y="12" width="6" height="8" fill="#fcd34d"/>
+                  <rect x="18" y="12" width="6" height="8" fill="#fcd34d"/>
+                  <rect x="12" y="24" width="6" height="10" fill="#78350f"/>
+                </g>
+
+                {/* House */}
+                <g transform="translate(80, 150)">
+                  <rect x="0" y="0" width="24" height="20" fill="#f59e0b" stroke="#d97706" strokeWidth="1.5"/>
+                  <polygon points="12,0 28,-8 28,0 12,8 -4,0 -4,-8" fill="#dc2626" stroke="#991b1b" strokeWidth="1.5"/>
+                  <rect x="8" y="8" width="5" height="6" fill="#78350f"/>
+                </g>
+
+                {/* Tree */}
+                <g transform="translate(190, 120)">
+                  <rect x="0" y="0" width="6" height="16" fill="#92400e"/>
+                  <circle cx="3" cy="-4" r="10" fill="#22c55e"/>
+                </g>
+
+                {/* Characters */}
+                <g transform="translate(105, 135)">
+                  <rect x="0" y="0" width="5" height="2" fill="#fbbf24"/>
+                  <rect x="0" y="2" width="5" height="5" fill="#3b82f6"/>
+                  <rect x="1" y="7" width="1.5" height="2" fill="#92400e"/>
+                  <rect x="2.5" y="7" width="1.5" height="2" fill="#92400e"/>
+                </g>
+
+                {/* Clouds */}
+                <ellipse cx="60" cy="25" rx="20" ry="10" fill="white" opacity="0.7"/>
+                <ellipse cx="220" cy="40" rx="25" ry="12" fill="white" opacity="0.7"/>
+              </svg>
+            </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-darkblue/10 py-12 bg-cream">
-        <div className="max-w-[1400px] mx-auto px-4">
-          {/* Newsletter Section */}
-          <div className="mb-12 pb-12 border-b border-darkblue/10">
-            <div className="max-w-2xl mx-auto text-center">
-              <h3 className="text-2xl font-bold mb-3">Stay in the loop</h3>
-              <p className="text-darkblue/70 mb-6">
-                Get product updates, dev tips, and the occasional bad joke.
-              </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="you@company.com"
-                  className="flex-1 px-4 py-3 rounded-posthog border-2 border-darkblue/20 focus:border-posthog focus:outline-none focus:ring-2 focus:ring-posthog/20 transition-all duration-200"
-                />
-                <button
-                  type="submit"
-                  className="bg-posthog hover:bg-[#E89D01] text-darkblue font-bold px-6 py-3 rounded-posthog transition-all duration-200 transform hover:scale-105 shadow-posthog hover:shadow-posthog-lg"
-                >
-                  Subscribe
-                </button>
-              </form>
-              <p className="text-xs text-darkblue/60 mt-3">
-                No spam. Unsubscribe anytime. We respect your inbox.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-darkblue/70 hover:*:text-darkblue transition-colors duration-200">
-                <li className="cursor-pointer">Analytics</li>
-                <li className="cursor-pointer">Feature Flags</li>
-                <li className="cursor-pointer">Session Recording</li>
-                <li className="cursor-pointer">A/B Testing</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-darkblue/70">
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">About</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Blog</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Careers</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Contact</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Resources</h4>
-              <ul className="space-y-2 text-darkblue/70">
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Documentation</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">API Reference</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Tutorials</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Community</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-darkblue/70">
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Privacy</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Terms</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">Security</li>
-                <li className="cursor-pointer hover:text-darkblue transition-colors duration-200">GDPR</li>
-              </ul>
-            </div>
-          </div>
-          <div className="text-center text-darkblue/60 text-sm pt-8 border-t border-darkblue/10">
-            <p>© 2024 PostHog Clone. Built with Next.js, Tailwind, and Framer Motion.</p>
-            <p className="mt-2 text-xs">Made with ☕ by developers, for developers.</p>
-          </div>
-        </div>
-      </footer>
+      </div>
     </main>
   );
 }
